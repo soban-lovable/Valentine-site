@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+<style>
+    body {
+        font-family: 'Comic Sans MS', cursive;
+        text-align: center;
+        background: linear-gradient(to bottom, #ffe6f0, #ffb3d9);
+        color: #ff0066;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    h1 {
+        font-size: 3em;
+        margin-bottom: 30px;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.3s;
+    }
+
+    #yesBtn {
+        background-color: #ff66b3;
+        color: white;
+    }
+
+    #yesBtn:hover {
+        transform: scale(1.1);
+    }
+
+    #noBtn {
+        background-color: #cccccc;
+    }
+
+    #message {
+        display: none;
+        margin-top: 20px;
+        font-size: 1.5em;
+        animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    /* Hearts animation */
+    .heart {
+        position: absolute;
+        font-size: 24px;
+        animation: floatUp 4s linear forwards;
+    }
+
+    @keyframes floatUp {
+        0% {opacity: 1; transform: translateY(0) scale(1);}
+        100% {opacity: 0; transform: translateY(-500px) scale(1.5);}
+    }
+</style>
+</head>
+<body>
+<h1>Will You Be My Valentine, Soban? 💖</h1>
+<div>
+    <button id="yesBtn" onclick="showMessage()">YES ❤️</button>
+    <button id="noBtn">NO 😢</button>
+</div>
+<p id="message">Yay! I knew you’d say YES, my sweet Dadduu! 💌 Love you, Gugu 😘</p>
+
+<script>
+const noBtn = document.getElementById('noBtn');
+
+noBtn.addEventListener('mouseover', function() {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50);
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+});
+
+// Show message + spawn hearts when YES is clicked
+function showMessage() {
+    document.getElementById('message').style.display = 'block';
+    spawnHearts();
+}
+
+function spawnHearts() {
+    for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerText = '❤️';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.fontSize = 12 + Math.random() * 30 + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+}
+</script>
+</body>
+</html>
